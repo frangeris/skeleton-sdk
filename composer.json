@@ -1,0 +1,20 @@
+{
+	"name": "iteraprocess/oorden-sdk",
+	"description": "SDK wrapper client for RESTful api",
+	"version": "1.0.1",
+	"autoload": {
+		"classmap": [
+			"src/"
+		],		
+		"psr-4": {
+			"Oorden\\SDK\\": "src/oorden/sdk/"
+		}
+	},
+	"require": {
+		"php": ">=5.5.0",
+		"phalcon/incubator": "dev-master",
+		"phalcon/devtools": "dev-master",
+		"symfony/var-dumper": "3.0.*@dev",
+		"guzzlehttp/guzzle": "5.2.*"
+	}
+}
