@@ -25,6 +25,8 @@ trait Manager
 	 */	
 	final public static function getInstance($class_name = null)
 	{
+		print "getInstance()\n";
+
 		if (is_null($class_name))
 			$class_name = get_called_class();
 

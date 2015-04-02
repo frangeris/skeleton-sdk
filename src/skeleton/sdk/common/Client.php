@@ -1,6 +1,9 @@
 <?php namespace Skeleton\SDK\Common;
 
-use Skeleton\SDK\Common\Client\AbstractClient;
+use Skeleton\SDK\Common\Client\AbstractClient,
+	Skeleton\SDK\Common\Exception\InvalidAuthenticateMethod,
+	Skeleton\SDK\Common\Exception\UnknownAuthenticateMethod	
+	;
 
 /**
  * Client used by providers for request to api

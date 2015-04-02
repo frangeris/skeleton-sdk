@@ -12,17 +12,19 @@ use Skeleton\SDK\Common\Supplier\ISupplier,
 class UserProvider extends AbstractProvider implements ISupplier
 {
 	public function all()
-	{}
+	{
+		print "all()\n";
+	}
 
 	public function getById($id)
 	{}
 
-	public function create($proveedor)
+	public function create($provider)
 	{}
 
-	public function update($proveedor)
+	public function update($provider)
 	{}
 
-	public function delete($proveedor)
+	public function delete($id)
 	{}
 }

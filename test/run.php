@@ -3,13 +3,21 @@
 include('vendor/autoload.php');
 
 use Skeleton\SDK\Common\Client,
-	Skeleton\SDK\Providers\User\UserProvider,
-	Skeleton\Models\IModel;
+	Skeleton\SDK\Providers\User\UserProvider;
 
-$client = Client::getInstance()->setCredentials([]);
+$config = [
+	'method' => 'hmac', 
+	'public_key' => 'asdasdasd',
+	'private_key' => 'zxzxzxzxzx',
+];
+
+$client = Client::getInstance()->setCredentials($config);
 
 $provider = new UserProvider($client);
  
+var_dump($provider);
+die();
+
 // GET
 $provider->all();
 // $provider->getById('<uuid>');

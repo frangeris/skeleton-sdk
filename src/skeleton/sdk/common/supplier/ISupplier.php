@@ -3,7 +3,7 @@
 use Skeleton\SDK\Common\Client;
 
 /**
- * Interface commun for all proviers
+ * Common interface for all provicers
  *
  * @author Frangeris Peguero <frangerisp@mctekk.com>
  */
@@ -11,6 +11,8 @@ interface ISupplier
 {
 	/**
 	 * Get all the resources
+	 *
+	 * @return string json
 	 */
 	public function all();
 
@@ -18,31 +20,31 @@ interface ISupplier
 	 * Get the resource by id
 	 * 
 	 * @param string $id Identifier
-	 * @return IModel
+	 * @return string json
 	 */
 	public function getById($id);
 
 	/**
 	 * Create a resource
 	 * 
-	 * @param IModel $proveedor Nuevo proveedor a crear
-	 * @return boolean Estado de la transaccion
+	 * @param object|array $provider New provider to create
+	 * @return boolean State of the transaction
 	 */
-	public function create($proveedor);
+	public function create($provider);
 
 	/**
 	 * Update a resouce
 	 * 
-	 * @param IModel $proveedor Nuevo proveedor a crear
-	 * @return boolean Estado de la transaccion
+	 * @param object|array $provider Resource to update
+	 * @return boolean State of the transaction
 	 */	
-	public function update($proveedor);
+	public function update($provider);
 
 	/**
 	 * Delete a resource
 	 * 
-	 * @param IModel|string $proveedor Instancia del proveedor a eliminar o uuid que lo identifique
-	 * @return boolean Estado de la transaccion
+	 * @param int $id Id of the resource to remove
+	 * @return boolean State of the transaction
 	 */	
-	public function delete($proveedor);	
+	public function delete($id);	
 }
