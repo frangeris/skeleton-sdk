@@ -1,4 +1,6 @@
-<?php namespace Skeleton\SDK\Comun\Supplier;
+<?php namespace Skeleton\SDK\Common\Supplier;
+
+use Skeleton\SDK\Common\Client;
 
 /**
  * Interface commun for all proviers
@@ -26,7 +28,7 @@ interface ISupplier
 	 * @param IModel $proveedor Nuevo proveedor a crear
 	 * @return boolean Estado de la transaccion
 	 */
-	public function create(IModel $proveedor);
+	public function create($proveedor);
 
 	/**
 	 * Update a resouce
@@ -34,7 +36,7 @@ interface ISupplier
 	 * @param IModel $proveedor Nuevo proveedor a crear
 	 * @return boolean Estado de la transaccion
 	 */	
-	public function update(IModel $proveedor);
+	public function update($proveedor);
 
 	/**
 	 * Delete a resource

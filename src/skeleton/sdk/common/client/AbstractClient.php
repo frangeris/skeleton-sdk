@@ -15,6 +15,12 @@ abstract class AbstractClient extends Client
 	const API_VERSION = 'v1';
 
 	/**
+	 * API credentials
+	 * @var array
+	 */
+	private $credentials;
+
+	/**
 	 * Get the version
 	 * 
 	 * @return string Version del api usada
@@ -23,4 +29,14 @@ abstract class AbstractClient extends Client
     {
     	return self::API_VERSION;
     }
+
+    public function setCredentials(array $credentials)
+	{
+		$this->credentials = $credentials;
+	}
+
+	public function getCredentials()
+	{
+		return $this->credentials;
+	}
 }

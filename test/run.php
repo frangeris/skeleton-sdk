@@ -6,19 +6,19 @@ use Skeleton\SDK\Common\Client,
 	Skeleton\SDK\Providers\User\UserProvider,
 	Skeleton\Models\IModel;
 
-$client = Client::getInstance('<credentials>');
+$client = Client::getInstance()->setCredentials([]);
 
 $provider = new UserProvider($client);
  
 // GET
 $provider->all();
-$provider->getById('<uuid>');
+// $provider->getById('<uuid>');
 
 // POST
-$provider->create( IModelo $new_user );
+// $provider->create( IModelo $new_user );
 
 // PUT
-$provider->update( IModelo $user_updated );
+// $provider->update( IModelo $user_updated );
 
 // DELETE
-$provider->delete( IModelo $provider | '<uuid>' );
+// $provider->delete( IModelo $provider | '<uuid>' );

@@ -1,4 +1,4 @@
-<?php namespace Skeleton\SDK\Comun\Factory;
+<?php namespace Skeleton\SDK\Common\Factory;
 
 /**
  * Manager of unique instances
