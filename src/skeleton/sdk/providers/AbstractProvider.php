@@ -26,11 +26,11 @@ abstract class AbstractProvider
 	}
 
 	/**
-	 * __destruct
+	 * Send the request
 	 *
 	 * @return void
 	 */
-	public function __destruct()
+	protected function send()
 	{
 		$credentials = $this->client->getCredentials();
 
@@ -43,5 +43,6 @@ abstract class AbstractProvider
 		}
 
 		// Make de request using guzzel client
+
 	}
 }

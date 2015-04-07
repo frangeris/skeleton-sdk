@@ -14,12 +14,10 @@ $config = [
 $client = Client::getInstance()->setCredentials($config);
 
 $provider = new UserProvider($client);
- 
-var_dump($provider);
-die();
 
 // GET
 $provider->all();
+
 // $provider->getById('<uuid>');
 
 // POST

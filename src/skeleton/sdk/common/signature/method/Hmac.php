@@ -22,9 +22,5 @@ class Hmac implements ISignature
 			- X-SIGNATURE
 			- X-NONCE
 		 */
-
-
-
-
 	}
 }
