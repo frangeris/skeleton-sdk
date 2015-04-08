@@ -14,18 +14,14 @@ class UserProvider extends AbstractProvider implements ISupplier
 {
 	public function all()
 	{
-		$response = $this->client->get('http://guzzlephp.org');
-
-		echo $response->getHeader('content-type')."\n";
-
-		// $this->send();
+		$response = $this->send('get', 'http://guzzlephp.org');
 	}
 
 	public function getById($id)
 	{
 		print "getById()\n";
 
-		$response = $this->send();
+		$response = $this->send('get', '/cuentas');
 	}
 
 	public function create($provider)

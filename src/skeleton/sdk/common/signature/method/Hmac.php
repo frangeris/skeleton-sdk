@@ -8,7 +8,7 @@ class Hmac implements ISignature
 {
 	use \Skeleton\SDK\Common\Factory\Manager;
 
-	public static function init($client)
+	public static function init($client, &$request)
 	{
 		print "hmac()\n";
 
@@ -16,11 +16,11 @@ class Hmac implements ISignature
 		if (empty($params['public_key']) || empty($params['private_key']))
 			throw new InvalidKeysHmacException('Both, public and private key are required for hmac authentication');
 
-		/*
-			Set headers to request
-			- X-PUBLIC-KEY
-			- X-SIGNATURE
-			- X-NONCE
-		 */
+		// Setting the credentials
+		$request->setHeaders([
+			'X-PUBLIC-KEY' => $params['public_key'],
+			'X-SIGNATURE' => '',
+			'X-NONCE' => ''
+		]);
 	}
 }

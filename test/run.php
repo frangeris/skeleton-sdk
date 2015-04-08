@@ -9,6 +9,7 @@ $config = [
 	'method' => 'hmac', 
 	'public_key' => 'asdasdasd',
 	'private_key' => 'zxzxzxzxzx',
+	'base_url' => ['https://api.twitter.com/{version}/', ['version' => 'v1']],
 ];
 
 $client = Client::getInstance()->setCredentials($config);

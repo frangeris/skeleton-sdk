@@ -2,5 +2,5 @@
 
 interface ISignature
 {
-	public static function init($params);
+	public static function init($client, &$request);
 }
