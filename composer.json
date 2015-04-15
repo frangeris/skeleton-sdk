@@ -1,7 +1,23 @@
 {
-	"name": "frangeris/skeleton-sdk",
-	"description": "SDK wrapper client for RESTful api",
-	"version": "0.0.1",
+    "name": "frangeris/skeleton-sdk",
+    "description": "SDK wrapper client for RESTful api",
+    "homepage": "https://github.com/frangeris/skeleton-sdk",
+    "repositories": [{
+    "type": "package",
+    "package": {
+        "name": "frangeris/skeleton-sdk",
+        "version": "0.0.1-BETA1",
+        "source": {
+            "url": "git@github.com:frangeris/skeleton-sdk.git",
+            "type": "git",
+        	"reference": "0.0.1-BETA1"
+        }
+        }
+    }],
+    "require": {
+        "php": ">=5.5.5",
+        "guzzlehttp/guzzle": "5.2.*"
+    },
 	"autoload": {
 		"classmap": [
 			"src/"
@@ -9,12 +25,5 @@
 		"psr-4": {
 			"Skeleton\\SDK\\": "src/skeleton/sdk/"
 		}
-	},
-	"require": {
-		"php": ">=5.5.0",
-		"phalcon/incubator": "dev-master",
-		"phalcon/devtools": "dev-master",
-		"symfony/var-dumper": "3.0.*@dev",
-		"guzzlehttp/guzzle": "5.2.*"
-	}
+	},    
 }
