@@ -27,13 +27,12 @@ abstract class AbstractProvider
 	}
 
 	/**
-	 * Send the request using configuration
-	 *
-	 * @return void
+	 * {@inheritance}
+	 * 
 	 * @todo
 	 		- Verify if the resource string have http://, if have, do not concatenate with base_url
 	 */
-	protected function get($resource, array $fields = null)
+	protected final function get($resource, array $fields = null)
 	{		
 		$config = $this->client->getConfig();
 		$request = $this->client->createRequest('get', $config['base_url']);
@@ -60,4 +59,7 @@ abstract class AbstractProvider
 
 		return $response;
 	}
+
+	protected final function post()
+	{}
 }

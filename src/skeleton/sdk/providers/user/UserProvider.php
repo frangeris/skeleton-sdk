@@ -10,21 +10,22 @@ use Skeleton\SDK\Common\Supplier\ISupplier,
  */
 class UserProvider extends AbstractProvider implements ISupplier
 {
-	public function all()
+
+	public function create($provider)
+	{}
+
+	public function read()
 	{
 		$response = $this->skeleton->get('/test', ['param' => 'valor']);
 		var_dump($response->json());
 	}
 
-	public function getById($id)
-	{}
-
-	public function create($provider)
-	{}
-
 	public function update($provider)
 	{}
 
 	public function delete($id)
+	{}
+
+	public function getById($id)
 	{}
 }

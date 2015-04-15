@@ -10,11 +10,6 @@ use GuzzleHttp\Client;
 abstract class AbstractClient extends Client
 {
 	/**
-	 * Api version used for RESTful
-	 */
-	const API_VERSION = 'v1';
-
-	/**
 	 * API credentials
 	 * 
 	 * @var array
@@ -27,16 +22,6 @@ abstract class AbstractClient extends Client
 	 * @var array
 	 */
 	private $methods = ['hmac'];
-
-	/**
-	 * Get the version
-	 * 
-	 * @return string Version del api usada
-	 */
-    public function getApiVersion()
-    {
-    	return self::API_VERSION;
-    }
 
     /**
      * Set the configuration for authentication
