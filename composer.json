@@ -6,11 +6,11 @@
     "type": "package",
     "package": {
         "name": "frangeris/skeleton-sdk",
-        "version": "0.0.1-BETA1",
+        "version": "0.0.1-BETA2",
         "source": {
             "url": "git@github.com:frangeris/skeleton-sdk.git",
             "type": "git",
-        	"reference": "0.0.1-BETA1"
+        	"reference": "0.0.1-BETA2"
         }
         }
     }],
