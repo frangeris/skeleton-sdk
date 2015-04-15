@@ -25,5 +25,5 @@
 		"psr-4": {
 			"Skeleton\\SDK\\": "src/skeleton/sdk/"
 		}
-	},    
+	}
 }
