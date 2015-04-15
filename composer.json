@@ -2,18 +2,6 @@
     "name": "frangeris/skeleton-sdk",
     "description": "SDK wrapper client for RESTful api",
     "homepage": "https://github.com/frangeris/skeleton-sdk",
-    "repositories": [{
-    "type": "package",
-    "package": {
-        "name": "frangeris/skeleton-sdk",
-        "version": "0.0.1-BETA2",
-        "source": {
-            "url": "git@github.com:frangeris/skeleton-sdk.git",
-            "type": "git",
-        	"reference": "0.0.1-BETA2"
-        }
-        }
-    }],
     "require": {
         "php": ">=5.5.5",
         "guzzlehttp/guzzle": "5.2.*"
