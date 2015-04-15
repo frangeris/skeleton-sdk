@@ -19,7 +19,7 @@ abstract class AbstractClient extends Client
 	 * 
 	 * @var array
 	 */
-	private $credentials;
+	private $config;
 
 	/**
 	 * Methods allowed for signature
@@ -39,22 +39,28 @@ abstract class AbstractClient extends Client
     }
 
     /**
-     * Set the credencials for authentication
+     * Set the configuration for authentication
      *
+     * @todo
+     		- Add exception type for base url undefined
      */
-    public function setCredentials(array $credentials)
+    public function setConfig(array $config)
 	{
-		print "setCredentials()\n";
+		print "setConfig()\n";
 
 		// Verify that method is provided
-		if (!isset($credentials['method']))
+		if (!isset($config['method']))
 			throw new InvalidAuthenticateMethod("Invalid authentification method, you must provide one");
 		
 		// Verify that exists
-		if (!in_array($credentials['method'], $this->methods))
+		if (!in_array($config['method'], $this->methods))
 			throw new UnknownAuthenticateMethod("Unknown authentification method");
 
-		$this->credentials = $credentials;
+		// Create the url to request using base_url parameter
+		if (!isset($config['base_url'][0])) 
+			throw new \Exception("Error processing, invalid base url provided, it must be the first one parameter without index, at position [0]", 1);
+
+		$this->config = $config;
 
 		return $this;
 	}
@@ -64,8 +70,8 @@ abstract class AbstractClient extends Client
 	 * 
 	 * @return array
 	 */
-	public function getCredentials()
+	public function getConfig()
 	{
-		return $this->credentials;
+		return $this->config;
 	}
 }

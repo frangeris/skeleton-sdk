@@ -1,6 +1,6 @@
 <?php
 
-include('vendor/autoload.php');
+include(__DIR__ . '/../vendor/autoload.php');
 
 use Skeleton\SDK\Common\Client,
 	Skeleton\SDK\Providers\User\UserProvider;
@@ -9,14 +9,14 @@ $config = [
 	'method' => 'hmac', 
 	'public_key' => 'asdasdasd',
 	'private_key' => 'zxzxzxzxzx',
-	'base_url' => ['https://api.twitter.com/{version}/', ['version' => 'v1']],
+	'base_url' => ['http://{domain}.mockable.io', ['domain' => 'demo4354589']],
 ];
 
-$client = Client::getInstance()->setCredentials($config);
-
+// Setting up
+$client = Client::getInstance()->setConfig($config);
 $provider = new UserProvider($client);
 
-// GET
+// GET request
 $provider->all();
 
 // $provider->getById('<uuid>');

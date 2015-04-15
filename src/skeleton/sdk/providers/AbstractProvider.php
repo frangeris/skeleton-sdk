@@ -8,11 +8,11 @@ use Skeleton\SDK\Common\Signature\Method\Hmac;
 abstract class AbstractProvider
 {
 	/**
-	 * Data for create the signature
+	 * Instance of current provider
 	 * 
-	 * @var mixed
+	 * @var Skeleton\SDK\Providers\AbstractProvider
 	 */
-	protected $data;
+	protected $skeleton;
 
 	/**
 	 * __construct
@@ -23,38 +23,41 @@ abstract class AbstractProvider
 	public function __construct(\Skeleton\SDK\Common\Client $client)
 	{
 		$this->client = $client;
+		$this->skeleton = $this;
 	}
 
 	/**
-	 * Send the request
+	 * Send the request using configuration
 	 *
 	 * @return void
+	 * @todo
+	 		- Verify if the resource string have http://, if have, do not concatenate with base_url
 	 */
-	protected function send($method, $url, array $fields = null)
-	{
-		$request = $this->client->createRequest(strtoupper($method), $url);
+	protected function get($resource, array $fields = null)
+	{		
+		$config = $this->client->getConfig();
+		$request = $this->client->createRequest('get', $config['base_url']);
+		$request->setPath($resource);
+
+		// If exists query fields, append it
+		if (is_array($fields)) 
+		{
+			$query = $request->getQuery();
+			foreach ($fields as $param => $value) 
+				$query[$param] = $value;
+		}
 
 		// Proceed with the signature
-		$credentials = $this->client->getCredentials();
-		switch ($credentials['method']) 
+		switch ($config['method']) 
 		{
 			case 'hmac':
 				Hmac::init($this->client, $request);
 				break;
 		}
 
+		// Make the request using guzzle
 		$response = $this->client->send($request);
 
-		var_dump($response->getStatusCode());
-
-		die();
-
-		return $request;
-
-		// Make de request using guzzel client
-
-		// $client->get('http://httpbin.org/get', [
-		// 	'headers' => ['X-Foo-Header' => 'value']
-		// ]);
+		return $response;
 	}
 }

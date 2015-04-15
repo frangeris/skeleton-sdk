@@ -215,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalcon/incubator.git",
-                "reference": "fc4831da085c3abf4f6f6bf31f199a539cd2c8f2"
+                "reference": "6c562b6e79b24444cd67d20ccc2e327218289a1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/incubator/zipball/fc4831da085c3abf4f6f6bf31f199a539cd2c8f2",
-                "reference": "fc4831da085c3abf4f6f6bf31f199a539cd2c8f2",
+                "url": "https://api.github.com/repos/phalcon/incubator/zipball/6c562b6e79b24444cd67d20ccc2e327218289a1a",
+                "reference": "6c562b6e79b24444cd67d20ccc2e327218289a1a",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +256,7 @@
                 "framework",
                 "phalcon"
             ],
-            "time": "2015-04-03 09:52:36"
+            "time": "2015-04-14 13:55:52"
         },
         {
             "name": "react/promise",
@@ -361,19 +361,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "689cef563b049ad9c876650999dd4e127209528d"
+                "reference": "7b568c6139b9532dbe74975b1c12f710d0b39fc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/689cef563b049ad9c876650999dd4e127209528d",
-                "reference": "689cef563b049ad9c876650999dd4e127209528d",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/7b568c6139b9532dbe74975b1c12f710d0b39fc0",
+                "reference": "7b568c6139b9532dbe74975b1c12f710d0b39fc0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0"
+                "symfony/phpunit-bridge": "~2.8|~3.0"
             },
             "suggest": {
                 "ext-symfony_debug": ""
@@ -412,7 +412,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2015-04-05 08:20:29"
+            "time": "2015-04-10 07:31:54"
         }
     ],
     "packages-dev": [],

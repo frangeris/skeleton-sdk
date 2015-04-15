@@ -7,22 +7,17 @@ use Skeleton\SDK\Common\Supplier\ISupplier,
 
 /**
  * Provider for user resource
- *
- * @author Frangeris Peguero <frangerisp@mctekk.com>
  */
 class UserProvider extends AbstractProvider implements ISupplier
 {
 	public function all()
 	{
-		$response = $this->send('get', 'http://guzzlephp.org');
+		$response = $this->skeleton->get('/test', ['param' => 'valor']);
+		var_dump($response->json());
 	}
 
 	public function getById($id)
-	{
-		print "getById()\n";
-
-		$response = $this->send('get', '/cuentas');
-	}
+	{}
 
 	public function create($provider)
 	{}
