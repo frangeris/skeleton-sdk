@@ -9,7 +9,7 @@ $config = [
 	'method' => 'hmac', // Signature to use
 	'public_key' => 'asdasdasd',
 	'private_key' => 'zxzxzxzxzx',
-	'base_url' => ['http://api.{domain}.com', ['domain' => 'somedomain']],
+	'base_url' => ['http://api.{domain}.{extension}/{version}/', ['version' => 'v1', 'extension' => 'io', 'domain' => 'somedomain']],
 ];
 
 // Setting up

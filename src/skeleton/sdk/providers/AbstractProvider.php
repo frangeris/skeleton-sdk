@@ -1,6 +1,8 @@
 <?php namespace Skeleton\SDK\Providers;
 
-use Skeleton\SDK\Common\Signature\Method\Hmac;
+use Skeleton\SDK\Common\Signature\Method\Hmac,
+	Skeleton\SDK\Common\Exception\InvalidFragmentsParameter
+	;
 
 /**
  * Common class for all providers
@@ -27,6 +29,39 @@ abstract class AbstractProvider
 	}
 
 	/**
+	 * Build url using parameters as fragments
+	 * 
+	 * @param array $fragments Assosiative array of parameters to make the replacement
+	 * @return string Final url formed
+	 * @throws InvalidFragmentsParameter Invalid parameters as fragments
+	 */
+	protected final function buildUrl($fragments)
+	{
+		// Verify url path
+		if (!isset($fragments[0])) 
+			throw new InvalidFragmentsParameter("Invalid base url structure, http:// path must exists at position [0]", 1);
+		
+		// Cleaning up	
+		$url = $fragments[0];
+		unset($fragments[0]);
+
+		// Begin process for make replacements
+		if (isset($fragments[1]) && is_array($fragments[1]))
+		{
+			$replacements = [];
+			$params = $fragments[1];
+
+			// Add { } to each element of the array
+			array_walk($params, function(&$item, $key) use (&$replacements){
+				$replacements['{'.$key.'}'] = $item;
+				// $item = '{'.$key.'}';
+			});
+		}
+
+		return str_replace(array_keys($replacements), array_values($replacements), $url);
+	}
+
+	/**
 	 * {@inheritance}
 	 * 
 	 * @todo
@@ -35,7 +70,7 @@ abstract class AbstractProvider
 	protected final function get($resource, array $fields = null)
 	{		
 		$config = $this->client->getConfig();
-		$request = $this->client->createRequest('get', $config['base_url']);
+		$request = $this->client->createRequest('get', $this->buildUrl($config['base_url']));
 		$request->setPath($resource);
 
 		// If exists query fields, append it
