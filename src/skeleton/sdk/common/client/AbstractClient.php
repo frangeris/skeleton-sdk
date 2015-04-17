@@ -28,6 +28,7 @@ abstract class AbstractClient extends Client
      *
      * @todo
      		- Add exception type for base url undefined
+     		- Validate the base_url[0] is a valid url
      */
     public function setConfig(array $config)
 	{

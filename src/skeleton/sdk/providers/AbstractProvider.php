@@ -71,8 +71,10 @@ abstract class AbstractProvider
 	{		
 		$config = $this->client->getConfig();
 		$request = $this->client->createRequest('get', $this->buildUrl($config['base_url']));
-		$request->setPath($resource);
-
+		
+		// Appending the resource to base url
+		$request->setUrl($request->getUrl() . $resource);
+		
 		// If exists query fields, append it
 		if (is_array($fields)) 
 		{
