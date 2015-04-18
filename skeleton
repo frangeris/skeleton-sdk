@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+// skeleton
+
+require __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Skeleton\SDK\Console\Command\GeneratorCommand;
+
+$application = new Application();
+
+// Commands
+$application->add(new GeneratorCommand());
+
+$application->run();

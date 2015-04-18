@@ -1,10 +1,23 @@
 {
     "name": "frangeris/skeleton-sdk",
     "description": "SDK wrapper client for RESTful api",
+    "keywords": ["skeleton", "sdk", "restful", "wrapper", "api"],
+    "license": "MIT",
     "homepage": "https://github.com/frangeris/skeleton-sdk",
+    "support": {
+        "issues": "https://github.com/frangeris/skeleton-sdk/issues",
+        "source": "https://github.com/frangeris/skeleton-sdk"
+    },    
+    "authors": [
+        {
+            "name": "Frangeris Peguero",
+            "email": "frangeris.20@gmail.com"
+        }
+    ], 
     "require": {
-        "php": ">=5.5.5",
-        "guzzlehttp/guzzle": "5.2.*"
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "5.2.*",
+        "symfony/console": "2.6.*"
     },
 	"autoload": {
 		"classmap": [
@@ -13,5 +26,6 @@
 		"psr-4": {
 			"Skeleton\\SDK\\": "src/skeleton/sdk/"
 		}
-	}
+	},
+	"bin": ["skeleton"]
 }
