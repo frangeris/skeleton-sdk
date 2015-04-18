@@ -7,9 +7,9 @@ use Skeleton\SDK\Common\Client,
 
 $config = [
 	'method' => 'hmac', // Signature to use
-	'public_key' => 'asdasdasd',
-	'private_key' => 'zxzxzxzxzx',
-	'base_url' => ['http://api.{domain}.{extension}/{version}/', ['version' => 'v1', 'extension' => 'io', 'domain' => 'somedomain']],
+	'public_key' => 'xxxxxxxxxxx',
+	'private_key' => 'xxxxxxxxxxx',
+	'base_url' => ['http://{identifier}.mockable.io', ['identifier' => 'demo4354589']],
 ];
 
 // Setting up
@@ -17,12 +17,14 @@ $client = Client::getInstance()->setConfig($config);
 $provider = new UserProvider($client);
 
 // GET request
-$provider->read();
+// $provider->read();
 
 // $provider->getById('<uuid>');
 
 // POST
-// $provider->create( IModelo $new_user );
+$user = new \stdClass();
+$user->email = 'test@test.com';
+print $provider->create($user);
 
 // PUT
 // $provider->update( IModelo $user_updated );

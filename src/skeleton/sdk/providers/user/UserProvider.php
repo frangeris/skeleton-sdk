@@ -10,14 +10,16 @@ use Skeleton\SDK\Common\Supplier\ISupplier,
  */
 class UserProvider extends AbstractProvider implements ISupplier
 {
-
 	public function create($provider)
-	{}
+	{
+		$response = $this->skeleton->post('/users', $this->fragment($provider));
+		return $response->getBody();
+	}
 
 	public function read()
 	{
-		$response = $this->skeleton->get('/test', ['param' => 'valor']);
-		var_dump($response->json());
+		$response = $this->skeleton->get('/users');
+		return $response->getBody();
 	}
 
 	public function update($provider)

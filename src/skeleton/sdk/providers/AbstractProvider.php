@@ -1,7 +1,8 @@
 <?php namespace Skeleton\SDK\Providers;
 
 use Skeleton\SDK\Common\Signature\Method\Hmac,
-	Skeleton\SDK\Common\Exception\InvalidFragmentsParameter
+	Skeleton\SDK\Common\Exception\InvalidFragmentsParameter,
+	GuzzleHttp\Message\Request
 	;
 
 /**
@@ -19,10 +20,10 @@ abstract class AbstractProvider
 	/**
 	 * __construct
 	 * 
-	 * @param \Skeleton\SDK\Common\Client $client
+	 * @param Skeleton\SDK\Common\Client $client
 	 * @return void
 	 */
-	public function __construct(\Skeleton\SDK\Common\Client $client)
+	public function __construct( $client)
 	{
 		$this->client = $client;
 		$this->skeleton = $this;
@@ -54,7 +55,6 @@ abstract class AbstractProvider
 			// Add { } to each element of the array
 			array_walk($params, function(&$item, $key) use (&$replacements){
 				$replacements['{'.$key.'}'] = $item;
-				// $item = '{'.$key.'}';
 			});
 		}
 
@@ -62,7 +62,40 @@ abstract class AbstractProvider
 	}
 
 	/**
-	 * {@inheritance}
+	 * Process the signature adding
+	 * 
+	 * @param Skeleton\SDK\Common\Client &$client Reference of the client
+	 * @param GuzzleHttp\Message\Request &$request [description]
+	 * @return void
+	 */
+	private function processSignature(\Skeleton\SDK\Common\Client &$client, Request &$request)
+	{
+		// Proceed with the signature
+		switch ($this->client->getConfig()['method']) 
+		{
+			case 'hmac':
+				Hmac::init($client, $request);
+				break;
+		}		
+	}
+
+	/**
+	 * Fragment and object into an array
+	 * 
+	 * @param mixed $object Object to fragment
+	 * @return array Vars inside the object
+	 */
+	protected function fragment($object)
+	{
+		return get_object_vars($object);
+	}
+
+	/**
+	 * Send GET http request
+	 *
+	 * @param string $resource Resouce to call eg. /users
+	 * @param array $fields Fields to send using query parameters
+	 * @return  Response of the request
 	 * 
 	 * @todo
 	 		- Verify if the resource string have http://, if have, do not concatenate with base_url
@@ -70,7 +103,7 @@ abstract class AbstractProvider
 	protected final function get($resource, array $fields = null)
 	{		
 		$config = $this->client->getConfig();
-		$request = $this->client->createRequest('get', $this->buildUrl($config['base_url']));
+		$request = $this->client->createRequest('GET', $this->buildUrl($config['base_url']));
 		
 		// Appending the resource to base url
 		$request->setUrl($request->getUrl() . $resource);
@@ -83,13 +116,8 @@ abstract class AbstractProvider
 				$query[$param] = $value;
 		}
 
-		// Proceed with the signature
-		switch ($config['method']) 
-		{
-			case 'hmac':
-				Hmac::init($this->client, $request);
-				break;
-		}
+		// Process the signature
+		$this->processSignature($this->client, $request);
 
 		// Make the request using guzzle
 		$response = $this->client->send($request);
@@ -97,6 +125,32 @@ abstract class AbstractProvider
 		return $response;
 	}
 
-	protected final function post()
-	{}
+	/**
+	 * Send POST http request
+	 *
+	 * @param string $resource Resource to call eg. /users
+	 * @param array $fields Fields to send using post paramters
+	 * @return  Response of the request
+	 */
+	protected final function post($resource, array $fields)
+	{
+		$config = $this->client->getConfig();
+		$request = $this->client->createRequest('POST', $this->buildUrl($config['base_url']));
+
+		// Appending the resource to base url
+		$request->setUrl($request->getUrl() . $resource);
+
+		// Setting the fields to request
+		$body = $request->getBody();
+		foreach ($fields as $key => $value)
+			$body->setField($key, $value);
+
+		// Process the signature
+		$this->processSignature($this->client, $request);
+
+		// Make the request using guzzle
+		$response = $this->client->send($request);
+
+		return $response;		
+	}
 }
