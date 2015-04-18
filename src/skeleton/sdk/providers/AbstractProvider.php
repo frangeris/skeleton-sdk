@@ -147,7 +147,7 @@ abstract class AbstractProvider
 		$this->init('post', $resource);
 
 		// Setting the fields to request
-		$body = $request->getBody();
+		$body = $this->request->getBody();
 		foreach ($fields as $key => $value)
 			$body->setField($key, $value);
 
