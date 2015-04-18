@@ -18,6 +18,6 @@ class GenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-    	echo 'funca';
+    	echo 'generate a new provider';
     }
 }
