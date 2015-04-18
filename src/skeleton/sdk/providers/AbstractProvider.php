@@ -17,16 +17,29 @@ abstract class AbstractProvider
 	 */
 	protected $skeleton;
 
+
+	protected $request;
+
 	/**
 	 * __construct
 	 * 
 	 * @param Skeleton\SDK\Common\Client $client
 	 * @return void
 	 */
-	public function __construct( $client)
+	public function __construct($client)
 	{
 		$this->client = $client;
 		$this->skeleton = $this;
+	}
+
+	private function init($method, $resource)
+	{
+		// Setting up the config
+		$config = $this->client->getConfig();
+		$this->request = $this->client->createRequest(strtoupper($method), $this->buildUrl($config['base_url']));
+		
+		// Appending the resource to base url
+		$this->request->setUrl($this->request->getUrl() . $resource);		
 	}
 
 	/**
@@ -65,16 +78,15 @@ abstract class AbstractProvider
 	 * Process the signature adding
 	 * 
 	 * @param Skeleton\SDK\Common\Client &$client Reference of the client
-	 * @param GuzzleHttp\Message\Request &$request [description]
 	 * @return void
 	 */
-	private function processSignature(\Skeleton\SDK\Common\Client &$client, Request &$request)
+	private function processSignature(\Skeleton\SDK\Common\Client &$client)
 	{
 		// Proceed with the signature
 		switch ($this->client->getConfig()['method']) 
 		{
 			case 'hmac':
-				Hmac::init($client, $request);
+				Hmac::init($client, $this->request);
 				break;
 		}		
 	}
@@ -102,25 +114,22 @@ abstract class AbstractProvider
 	 */
 	protected final function get($resource, array $fields = null)
 	{		
-		$config = $this->client->getConfig();
-		$request = $this->client->createRequest('GET', $this->buildUrl($config['base_url']));
-		
-		// Appending the resource to base url
-		$request->setUrl($request->getUrl() . $resource);
+		// Initilize the request as post
+		$this->init('get', $resource);
 		
 		// If exists query fields, append it
 		if (is_array($fields)) 
 		{
-			$query = $request->getQuery();
+			$query = $this->request->getQuery();
 			foreach ($fields as $param => $value) 
 				$query[$param] = $value;
 		}
 
 		// Process the signature
-		$this->processSignature($this->client, $request);
+		$this->processSignature($this->client, $this->request);
 
 		// Make the request using guzzle
-		$response = $this->client->send($request);
+		$response = $this->client->send($this->request);
 
 		return $response;
 	}
@@ -134,11 +143,8 @@ abstract class AbstractProvider
 	 */
 	protected final function post($resource, array $fields)
 	{
-		$config = $this->client->getConfig();
-		$request = $this->client->createRequest('POST', $this->buildUrl($config['base_url']));
-
-		// Appending the resource to base url
-		$request->setUrl($request->getUrl() . $resource);
+		// Initilize the request as post
+		$this->init('post', $resource);
 
 		// Setting the fields to request
 		$body = $request->getBody();
@@ -153,4 +159,7 @@ abstract class AbstractProvider
 
 		return $response;		
 	}
+
+	protected final function put()
+	{}
 }
