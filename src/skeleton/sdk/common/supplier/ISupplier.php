@@ -3,17 +3,17 @@
 use Skeleton\SDK\Common\Client;
 
 /**
- * Common interface for all provicers
+ * Common interface for all provicers (CRUD)
  */
 interface ISupplier
 {
 	/**
 	 * Create a resource
 	 * 
-	 * @param object|array $provider New provider to create
+	 * @param object|array $entity New entity to create
 	 * @return boolean State of the transaction
 	 */
-	public function create($provider);
+	public function create($entity);
 
 	/**
 	 * Get all the resources
@@ -25,10 +25,10 @@ interface ISupplier
 	/**
 	 * Update a resouce
 	 * 
-	 * @param object|array $provider Resource to update
+	 * @param object|array $entity Resource to update
 	 * @return boolean State of the transaction
 	 */	
-	public function update($provider);
+	public function update($id, $entity);
 
 	/**
 	 * Delete a resource
