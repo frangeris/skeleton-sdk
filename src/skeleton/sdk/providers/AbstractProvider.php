@@ -152,7 +152,7 @@ abstract class AbstractProvider
 			$body->setField($key, $value);
 
 		// Process the signature
-		$this->processSignature($this->client, $request);
+		$this->processSignature($this->client, $this->request);
 
 		// Make the request using guzzle
 		$response = $this->client->send($request);
