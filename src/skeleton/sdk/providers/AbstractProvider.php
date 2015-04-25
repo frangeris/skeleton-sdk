@@ -155,7 +155,7 @@ abstract class AbstractProvider
 		$this->processSignature($this->client, $this->request);
 
 		// Make the request using guzzle
-		$response = $this->client->send($request);
+		$response = $this->client->send($this->request);
 
 		return $response;		
 	}
