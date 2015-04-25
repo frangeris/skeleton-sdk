@@ -138,13 +138,17 @@ abstract class AbstractProvider
 	 * Send POST http request
 	 *
 	 * @param string $resource Resource to call eg. /users
-	 * @param array $fields Fields to send using post paramters
-	 * @return  Response of the request
+	 * @param mixed $fields Fields to send using post paramters
+	 * @return Response of the request
 	 */
-	protected final function post($resource, array $fields)
+	protected final function post($resource, $fields)
 	{
 		// Initilize the request as post
 		$this->init('post', $resource);
+
+		// Is an object
+		if (!is_array($data))
+			$data = $this->fragments($data);
 
 		// Setting the fields to request
 		$body = $this->request->getBody();
@@ -160,6 +164,31 @@ abstract class AbstractProvider
 		return $response;		
 	}
 
-	protected final function put()
-	{}
+	/**
+	 * Send PUT http request
+	 *
+	 * @param string $resource Resource to call eg. /users
+	 * @param mixed $data Fields to send using put paramters
+	 * @return Response of the request
+	 */
+	protected final function put($resource, $data)
+	{
+		// Initilize the request as put
+		$this->init('put', $resource);
+
+		// Is an object
+		if (!is_array($data))
+			$data = $this->fragments($data);
+
+		// Setting the fields to request
+		$body = $this->request->setBody(json_encode($data));
+		
+		// Process the signature
+		$this->processSignature($this->client, $this->request);
+
+		// Make the request using guzzle
+		$response = $this->client->send($this->request);
+
+		return $response;				
+	}
 }
