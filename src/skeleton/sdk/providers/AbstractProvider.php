@@ -149,7 +149,7 @@ abstract class AbstractProvider
 
 		// Is an object
 		if (!is_array($fields))
-			$fields = $this->fragments($fields);
+			$fields = $this->fragment($fields);
 
 		// Setting the fields to request
 		$body = $this->request->getBody();
