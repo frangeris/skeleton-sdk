@@ -9,7 +9,7 @@ interface ISupplier
 {
 	/**
 	 * Create a resource
-	 * 
+	 *
 	 * @param object|array $entity New entity to create
 	 * @return boolean State of the transaction
 	 */
@@ -24,25 +24,25 @@ interface ISupplier
 
 	/**
 	 * Update a resouce
-	 * 
+	 *
 	 * @param object|array $entity Resource to update
 	 * @return boolean State of the transaction
-	 */	
+	 */
 	public function update($id, $entity);
 
 	/**
 	 * Delete a resource
-	 * 
+	 *
 	 * @param int $id Id of the resource to remove
 	 * @return boolean State of the transaction
-	 */	
+	 */
 	public function delete($id);
 
 	/**
 	 * Get the resource by id
-	 * 
+	 *
 	 * @param string $id Identifier
 	 * @return string json
 	 */
-	public function getById($id);		
+	public function getById($id);
 }

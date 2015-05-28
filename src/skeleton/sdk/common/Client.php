@@ -2,7 +2,7 @@
 
 use Skeleton\SDK\Common\Client\AbstractClient,
 	Skeleton\SDK\Common\Exception\InvalidAuthenticateMethod,
-	Skeleton\SDK\Common\Exception\UnknownAuthenticateMethod	
+	Skeleton\SDK\Common\Exception\UnknownAuthenticateMethod
 	;
 
 /**

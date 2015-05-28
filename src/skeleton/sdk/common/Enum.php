@@ -9,7 +9,7 @@ abstract class Enum
 {
     /**
      * Cache for values, increase performance
-     * 
+     *
      * @var array
      */
     protected static $cache = array();
@@ -32,12 +32,12 @@ abstract class Enum
     public static function values()
     {
         $class = get_called_class();
-        if (!isset(self::$cache[$class])) 
+        if (!isset(self::$cache[$class]))
         {
             $reflected = new \ReflectionClass($class);
             self::$cache[$class] = $reflected->getConstants();
         }
-        
+
         return self::$cache[$class];
     }
 }

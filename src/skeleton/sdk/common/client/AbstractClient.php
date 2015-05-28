@@ -11,14 +11,14 @@ abstract class AbstractClient extends Client
 {
 	/**
 	 * API credentials
-	 * 
+	 *
 	 * @var array
 	 */
 	private $config;
 
 	/**
 	 * Methods allowed for signature
-	 * 
+	 *
 	 * @var array
 	 */
 	private $methods = ['hmac'];
@@ -32,18 +32,16 @@ abstract class AbstractClient extends Client
      */
     public function setConfig(array $config)
 	{
-		print "setConfig()\n";
-
 		// Verify that method is provided
 		if (!isset($config['method']))
 			throw new InvalidAuthenticateMethod("Invalid authentification method, you must provide one");
-		
+
 		// Verify that exists
 		if (!in_array($config['method'], $this->methods))
 			throw new UnknownAuthenticateMethod("Unknown authentification method");
 
 		// Create the url to request using base_url parameter
-		if (!isset($config['base_url'][0])) 
+		if (!isset($config['base_url'][0]))
 			throw new \Exception("Error processing, invalid base url provided, it must be the first one parameter without index, at position [0]", 1);
 
 		$this->config = $config;
@@ -53,7 +51,7 @@ abstract class AbstractClient extends Client
 
 	/**
 	 * Getter
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getConfig()
