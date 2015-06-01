@@ -3,7 +3,7 @@
     "description": "SDK wrapper client for RESTful api",
     "homepage": "https://github.com/frangeris/skeleton-sdk",
     "require": {
-        "php": ">=5.5.5",
+        "php": ">=5.5.0",
         "guzzlehttp/guzzle": "5.3.0"
     },
 	"autoload": {
