@@ -18,9 +18,10 @@ interface ISupplier
 	/**
 	 * Get all the resources
 	 *
+	 * @param array $filter Array of options to apply to query filter [optional]
 	 * @return string json
 	 */
-	public function read();
+	public function read($filter = null);
 
 	/**
 	 * Update a resouce

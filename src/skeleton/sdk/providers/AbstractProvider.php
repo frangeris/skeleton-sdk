@@ -18,7 +18,9 @@ abstract class AbstractProvider
 	 */
 	protected $skeleton;
 
-
+	/**
+	 * @var
+	 */
 	protected $request;
 
 	/**
@@ -154,7 +156,7 @@ abstract class AbstractProvider
 		// Setting the fields to request
 		$body = $this->request->getBody();
 		foreach ($fields as $key => $value)
-			$body->setField($key, $value);
+			$body->setField($key, (string) $value);
 
 		// Process the signature
 		$this->processSignature($this->client, $this->request);
