@@ -106,11 +106,31 @@ abstract class AbstractProvider
 	}
 
 	/**
+	 * Make the call using guzzle
+	 *
+	 * @return Response of the request
+	 */
+	private function call()
+	{
+		// Process the signature
+		$this->processSignature($this->client);
+
+		try {
+			// Make the request using guzzle
+			$response = $this->client->send($this->request);
+		} catch(\Exception $ex) {
+			return $ex->getResponse();
+		}
+
+		return $response;
+	}
+
+	/**
 	 * Send GET http request
 	 *
 	 * @param string $resource Resouce to call eg. /users
 	 * @param array $fields Fields to send using query parameters
-	 * @return  Response of the request
+	 * @return Response of the request
 	 *
 	 * @todo
 	 		- Verify if the resource string have http://, if have, do not concatenate with base_url
@@ -128,13 +148,8 @@ abstract class AbstractProvider
 				$query[$param] = $value;
 		}
 
-		// Process the signature
-		$this->processSignature($this->client, $this->request);
-
 		// Make the request using guzzle
-		$response = $this->client->send($this->request);
-
-		return $response;
+		return $this->call();
 	}
 
 	/**
@@ -158,13 +173,8 @@ abstract class AbstractProvider
 		foreach ($fields as $key => $value)
 			$body->setField($key, (string) $value);
 
-		// Process the signature
-		$this->processSignature($this->client, $this->request);
-
 		// Make the request using guzzle
-		$response = $this->client->send($this->request);
-
-		return $response;
+		return $this->call();
 	}
 
 	/**
@@ -187,13 +197,8 @@ abstract class AbstractProvider
 		$data = Stream::factory(json_encode($data));
 		$body = $this->request->setBody($data);
 
-		// Process the signature
-		$this->processSignature($this->client, $this->request);
-
 		// Make the request using guzzle
-		$response = $this->client->send($this->request);
-
-		return $response;
+		return $this->call();
 	}
 
 	/**
@@ -207,12 +212,7 @@ abstract class AbstractProvider
 		// Initilize the request as post
 		$this->init('delete', $resource);
 
-		// Process the signature
-		$this->processSignature($this->client, $this->request);
-
 		// Make the request using guzzle
-		$response = $this->client->send($this->request);
-
-		return $response;
+		return $this->call();
 	}
 }
