@@ -1,4 +1,7 @@
-<?php namespace Skeleton\SDK\Common\Exception;
+<?php
 
-class InvaliduthenticateMethod extends \Exception
-{}
+namespace Skeleton\SDK\Common\Exception;
+
+class InvalidAuthenticateMethod extends \Exception
+{
+}
