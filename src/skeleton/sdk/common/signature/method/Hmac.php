@@ -30,7 +30,7 @@ class Hmac implements ISignature
                 $data = count($request->getBody()->getFields()) ? json_encode($request->getBody()->getFields()) : null;
                 break;
             case 'GET' :
-                $data = count($request->getQuery()) ? json_encode($request->getQuery()) : null;
+                $data = count($request->getQuery()) ? json_encode((string)$request->getQuery()) : null;
                 break;
             case 'PUT' :
                 $data = $request->getBody()->getContents();
